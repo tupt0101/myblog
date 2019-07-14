@@ -60,6 +60,10 @@ namespace FinalProject_Blog
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "categoryFilter", 
+                    template: "Post/{action}/{categoryId?}", 
+                    defaults: new { Controller = "Post", Action = "Category"});
             });
         }
     }

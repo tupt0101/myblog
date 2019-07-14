@@ -9,5 +9,7 @@ namespace FinalProject_Blog.Interfaces
     public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; }
+
+        string CurrentCategory(int categoryId);
     }
 }

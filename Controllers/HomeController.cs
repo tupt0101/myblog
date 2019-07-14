@@ -36,11 +36,6 @@ namespace FinalProject_Blog.Controllers
             return View(vm);
         }
 
-        public IActionResult Menu()
-        {
-            return PartialView(_categoryRepository.Categories);
-        }
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

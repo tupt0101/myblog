@@ -19,9 +19,23 @@ namespace FinalProject_Blog.Models
             }
         }
 
+        public IEnumerable<Post> RandomPosts
+        {
+            get
+            {
+                return dbContext.GetRandomPost();
+            }
+        }
+
         public Post GetPostById(int Id)
         {
             return dbContext.GetPostById(Id);
         }
+
+        public IEnumerable<Post> PostsByCategory(int categoryId)
+        {
+            return dbContext.GetPostByCategoryId(categoryId);
+        }
+
     }
 }

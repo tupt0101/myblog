@@ -1,0 +1,7 @@
+﻿@foreach (var category in Model)
+{
+    <a class="category" asp-controller="Post" asp-action="Category" asp-route-categoryId="@category.Id">
+        <img src="~/images/test.png" alt="Category Image">
+        <h6 class="name">@category.Name</h6>
+    </a>
+}

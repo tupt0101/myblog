@@ -15,6 +15,8 @@ namespace FinalProject_Blog.Models
 
         public virtual string Description { get; set; }
 
+        public virtual string ImgSrc { get; set; }
+
         public virtual string Meta { get; set; }
 
         public virtual string UrlSlug { get; set; }
@@ -24,6 +26,8 @@ namespace FinalProject_Blog.Models
         public virtual DateTime PostedOn { get; set; }
 
         public virtual DateTime? Modified { get; set; }
+
+        public virtual string Category { get; set; }
 
         //public virtual IList<Tag> Tags { get; set; }
     }

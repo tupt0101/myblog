@@ -5,7 +5,6 @@ D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\bin\Debu
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\bin\Debug\netcoreapp2.1\FinalProject-Blog.pdb
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\bin\Debug\netcoreapp2.1\FinalProject-Blog.Views.dll
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\bin\Debug\netcoreapp2.1\FinalProject-Blog.Views.pdb
-D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.csprojAssemblyReference.cache
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.csproj.CoreCompileInputs.cache
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.RazorAssemblyInfo.cache
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.RazorAssemblyInfo.cs
@@ -30,4 +29,9 @@ D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debu
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.dll
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.pdb
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.csproj.CopyComplete
-D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Home\_Category.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\CategoryMenu\Default.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\CategorySidebar\Default.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Detail.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\RandomPost\Default.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.csprojAssemblyReference.cache
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Category.g.cshtml.cs

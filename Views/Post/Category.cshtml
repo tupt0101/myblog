@@ -1,7 +1,10 @@
 ﻿@model PostListViewModel
+@*<div>
+        <h2>@Model.CurrentCategory</h2>
+    </div>*@
 
 <div class="text-center" style="margin-bottom: 20px">
-    <a class="btn" style="width: 100%"><h5>MỚI NHẤT</h5></a>
+    <a class="btn" style="width: 100%"><h5>@Model.CurrentCategory</h5></a>
 </div>
 
 @foreach (var item in Model.Posts)
@@ -19,11 +22,7 @@
                     <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
                 </ul>*@
         </div>
-        <h2 class="title">
-            <a asp-controller="Post" asp-action="Detail" asp-route-postId="@item.Id">
-                <b class="light-color">@Html.DisplayFor(modelItem => item.Title)</b>
-            </a>
-        </h2>
+        <h2 class="title"><a href="#"><b class="light-color">@Html.DisplayFor(modelItem => item.Title)</b></a></h2>
         <p class="date"><em>@Html.DisplayFor(modelItem => item.PostedOn)</em></p>
         <p>
             @Html.DisplayFor(modelItem => item.ShortDescription)
@@ -31,3 +30,4 @@
         <a class="btn read-more-btn" asp-controller="Post" asp-action="Detail" asp-route-postId="@item.Id"><b>READ MORE</b></a>
     </div><!-- single-post -->
 }
+

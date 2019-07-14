@@ -1,0 +1,9 @@
+﻿@foreach (var post in Model)
+{
+    <div class="latest-post" href="#">
+        <div class="post-info" style="width: 100%; margin-left: 0px">
+            <h5><a asp-controller="Post" asp-action="Detail" asp-route-postId="@post.Id"><b class="light-color">@post.Title</b></a></h5>
+            <h6 class="date"><em>@post.PostedOn</em></h6>
+        </div>
+    </div>
+}

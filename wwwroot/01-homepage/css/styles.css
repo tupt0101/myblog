@@ -372,9 +372,9 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .latest-post{ overflow: hidden; margin-bottom: 20px; }
 
-.latest-post .l-post-image{ width: 80px; float: left; }
+/*.latest-post .l-post-image{ width: 80px; float: left; }*/
 
-.latest-post .post-info{ margin-left: 100px; }
+.latest-post .post-info{ margin-left: 0px }
 
 .latest-post .category-btn{ padding: 5px 10px; margin-bottom: 5px; }
 

@@ -11,5 +11,9 @@ namespace FinalProject_Blog.Interfaces
         IEnumerable<Post> Posts { get; }
 
         Post GetPostById(int Id);
+
+        IEnumerable<Post> PostsByCategory(int categoryId);
+
+        IEnumerable<Post> RandomPosts { get; }
     }
 }

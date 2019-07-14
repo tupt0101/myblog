@@ -10,7 +10,6 @@ namespace FinalProject_Blog.ViewModels
     {
         public IEnumerable<Post> Posts { get; set; }
 
-        
         public string CurrentCategory { get; set; }
     }
 }

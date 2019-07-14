@@ -18,5 +18,16 @@ namespace FinalProject_Blog.Models
                 return dbContext.GetAllCategories();
             }
         }
+
+        public string CurrentCategory(int categoryId)
+        {
+            List<Category> categories = dbContext.GetAllCategories().ToList();
+            foreach (Category item in categories)
+            {
+                if (item.Id == categoryId)
+                    return item.Name;
+            }
+            return string.Empty;
+        }
     }
 }
