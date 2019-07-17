@@ -19,6 +19,11 @@ namespace FinalProject_Blog.Models
             }
         }
 
+        public bool CreateCategory(Category category)
+        {
+            return dbContext.CreateCategory(category);
+        }
+
         public string CurrentCategory(int categoryId)
         {
             List<Category> categories = dbContext.GetAllCategories().ToList();
@@ -28,6 +33,21 @@ namespace FinalProject_Blog.Models
                     return item.Name;
             }
             return string.Empty;
+        }
+
+        public Category GetCategoryById(int Id)
+        {
+            return dbContext.GetCategoryById(Id);
+        }
+
+        public bool UpdateCategory(Category category)
+        {
+            return dbContext.UpdateCategory(category);
+        }
+
+        public bool DeleteCategory(int Id)
+        {
+            return dbContext.DeleteCategory(Id);
         }
     }
 }

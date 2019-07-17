@@ -14,5 +14,7 @@ namespace FinalProject_Blog.Models
         public virtual string UrlSlug { get; set; }
 
         public virtual string Description { get; set; }
+
+        public virtual List<Post> Posts { get; set; }
     }
 }

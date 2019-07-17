@@ -17,7 +17,7 @@ namespace FinalProject_Blog.Models
 
         public virtual string ImgSrc { get; set; }
 
-        public virtual string Meta { get; set; }
+        public virtual string Author { get; set; }
 
         public virtual string UrlSlug { get; set; }
 

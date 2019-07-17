@@ -35,3 +35,14 @@ D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debu
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\RandomPost\Default.g.cshtml.cs
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\FinalProject-Blog.csprojAssemblyReference.cache
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Category.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Search.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Subscribe.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Admin.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Index.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Post.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Category.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Tag.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\EditCategory.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\CreateCategory.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\CreateTag.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\EditTag.g.cshtml.cs

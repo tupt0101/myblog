@@ -11,5 +11,13 @@ namespace FinalProject_Blog.Interfaces
         IEnumerable<Category> Categories { get; }
 
         string CurrentCategory(int categoryId);
+
+        Category GetCategoryById(int Id);
+
+        bool CreateCategory(Category category);
+
+        bool UpdateCategory(Category category);
+
+        bool DeleteCategory(int Id);
     }
 }

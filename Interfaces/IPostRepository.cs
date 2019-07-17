@@ -15,5 +15,9 @@ namespace FinalProject_Blog.Interfaces
         IEnumerable<Post> PostsByCategory(int categoryId);
 
         IEnumerable<Post> RandomPosts { get; }
+
+        IEnumerable<Post> PostsBySearchKey(string searchKey);
+
+        bool SaveSubscribeEmail(string email);
     }
 }

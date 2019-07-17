@@ -70,12 +70,12 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("    ");
             EndContext();
             BeginContext(41, 216, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9446abb13a9e4da89c463a2af9db083e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a71637ddc0684466ad25f6fe53d3ad40", async() => {
                 BeginContext(141, 10, true);
                 WriteLiteral("\r\n        ");
                 EndContext();
                 BeginContext(151, 50, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "73c41a423bc0463a8594d5cec52b8bbd", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ff304b1c7fda430aa59b3d45a2e62094", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -16,7 +16,6 @@ namespace FinalProject_Blog.Database
             strConnection = "server=.;database=BlogDB;uid=sa;pwd=12345678";
         }
 
-        //Get post pagination
         public IEnumerable<Post> GetPost(int pageIndex, int pageSize)
         {
             SqlConnection conn = new SqlConnection(strConnection);
@@ -41,7 +40,7 @@ namespace FinalProject_Blog.Database
                         ShortDescription = dr["ShortDescription"].ToString(),
                         Description = dr["Description"].ToString(),
                         ImgSrc = dr["ImgSrc"].ToString(),
-                        Meta = dr["Meta"].ToString(),
+                        Author = dr["Author"].ToString(),
                         UrlSlug = dr["UrlSlug"].ToString(),
                         Published = Convert.ToBoolean(dr["Published"]),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
@@ -60,7 +59,6 @@ namespace FinalProject_Blog.Database
             return result;
         }
 
-        //Get all posts from database
         public IEnumerable<Post> GetAllPosts()
         {
             List<Post> lstPost = new List<Post>();
@@ -78,7 +76,7 @@ namespace FinalProject_Blog.Database
                     post.ShortDescription = dr["ShortDescription"].ToString();
                     post.Description = dr["Description"].ToString();
                     post.ImgSrc = dr["ImgSrc"].ToString();
-                    post.Meta = dr["Meta"].ToString();
+                    post.Author = dr["Author"].ToString();
                     post.UrlSlug = dr["UrlSlug"].ToString();
                     post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
@@ -107,7 +105,7 @@ namespace FinalProject_Blog.Database
                     post.ShortDescription = dr["ShortDescription"].ToString();
                     post.Description = dr["Description"].ToString();
                     post.ImgSrc = dr["ImgSrc"].ToString();
-                    post.Meta = dr["Meta"].ToString();
+                    post.Author = dr["Author"].ToString();
                     post.UrlSlug = dr["UrlSlug"].ToString();
                     post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
@@ -117,30 +115,7 @@ namespace FinalProject_Blog.Database
             return post;
         }
 
-        public IEnumerable<Category> GetAllCategories()
-        {
-            List<Category> lstCate = new List<Category>();
-            using (SqlConnection conn = new SqlConnection(strConnection))
-            {
-                SqlCommand cmd = new SqlCommand("Category_Load", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                conn.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    lstCate.Add(new Category
-                    {
-                        Id = Convert.ToInt32(dr["Id"]),
-                        Name = dr["Name"].ToString(),
-                        UrlSlug = dr["UrlSlug"].ToString(),
-                        Description = dr["Description"].ToString()
-                    });
-
-                }
-                conn.Close();
-            }
-            return lstCate;
-        }
+        
 
         public IEnumerable<Post> GetPostByCategoryId(int categoryId)
         {
@@ -161,7 +136,7 @@ namespace FinalProject_Blog.Database
                         ShortDescription = dr["ShortDescription"].ToString(),
                         Description = dr["Description"].ToString(),
                         ImgSrc = dr["ImgSrc"].ToString(),
-                        Meta = dr["Meta"].ToString(),
+                        Author = dr["Author"].ToString(),
                         UrlSlug = dr["UrlSlug"].ToString(),
                         Published = dr.GetBoolean(dr.GetOrdinal("Published")),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
@@ -191,7 +166,7 @@ namespace FinalProject_Blog.Database
                         ShortDescription = dr["ShortDescription"].ToString(),
                         Description = dr["Description"].ToString(),
                         ImgSrc = dr["ImgSrc"].ToString(),
-                        Meta = dr["Meta"].ToString(),
+                        Author = dr["Author"].ToString(),
                         UrlSlug = dr["UrlSlug"].ToString(),
                         Published = dr.GetBoolean(dr.GetOrdinal("Published")),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
@@ -203,7 +178,149 @@ namespace FinalProject_Blog.Database
             return listPost;
         }
 
-        //Get tags
+
+        public IEnumerable<Post> SearchByKey(string searchKey)
+        {
+            List<Post> listPost = new List<Post>();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("Post_Search", conn);
+                cmd.Parameters.AddWithValue("@searchKey", searchKey);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    listPost.Add(new Post
+                    {
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Title = dr["Title"].ToString(),
+                        ShortDescription = dr["ShortDescription"].ToString(),
+                        Description = dr["Description"].ToString(),
+                        ImgSrc = dr["ImgSrc"].ToString(),
+                        Author = dr["Author"].ToString(),
+                        UrlSlug = dr["UrlSlug"].ToString(),
+                        Published = dr.GetBoolean(dr.GetOrdinal("Published")),
+                        PostedOn = Convert.ToDateTime(dr["PostedOn"]),
+                        Category = dr["Category"].ToString()
+                    });
+                }
+                conn.Close();
+            }
+            return listPost;
+        }
+
+        public bool SaveSubscribeEmail(string email)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("Subscribe_Email", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@email", email);
+                conn.Open();
+                int count = cmd.ExecuteNonQuery();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
+        /// <summary>
+        /// All actions with Category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        public IEnumerable<Category> GetAllCategories()
+        {
+            List<Category> lstCate = new List<Category>();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("Category_Load", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    lstCate.Add(new Category
+                    {
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Name = dr["Name"].ToString(),
+                        UrlSlug = dr["UrlSlug"].ToString(),
+                        Description = dr["Description"].ToString()
+                    });
+
+                }
+                conn.Close();
+            }
+            return lstCate;
+        }
+
+        public bool CreateCategory(Category category)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("CreateCategory", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", category.Name);
+                cmd.Parameters.AddWithValue("@UrlSlug", category.UrlSlug);
+                cmd.Parameters.AddWithValue("@Description", category.Description);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public Category GetCategoryById(int Id)
+        {
+            Category cat = new Category();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("GetCategoryById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cat.Id = Id;
+                    cat.Name = dr["Name"].ToString();
+                    cat.UrlSlug = dr["UrlSlug"].ToString();
+                    cat.Description = dr["Description"].ToString();
+                }
+                conn.Close();
+            }
+            return cat;
+        }
+
+        public bool UpdateCategory(Category category)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("UpdateCategory", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", category.Id);
+                cmd.Parameters.AddWithValue("@Name", category.Name);
+                cmd.Parameters.AddWithValue("@UrlSlug", category.UrlSlug);
+                cmd.Parameters.AddWithValue("@Description", category.Description);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool DeleteCategory(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("DeleteCategory", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        /// <summary>
+        /// All actions with Tag
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Tag> GetAllTags()
         {
             SqlConnection conn = new SqlConnection(strConnection);
@@ -235,6 +352,69 @@ namespace FinalProject_Blog.Database
                 conn.Close();
             }
             return result;
+        }
+
+        public bool CreateTag(Tag tag)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("CreateTag", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", tag.Name);
+                cmd.Parameters.AddWithValue("@UrlSlug", tag.UrlSlug);
+                cmd.Parameters.AddWithValue("@Description", tag.Description);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public Tag GetTagById(int Id)
+        {
+            Tag tag = new Tag();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("GetTagById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", Id);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    tag.Id = Id;
+                    tag.Name = dr["Name"].ToString();
+                    tag.UrlSlug = dr["UrlSlug"].ToString();
+                    tag.Description = dr["Description"].ToString();
+                }
+                conn.Close();
+            }
+            return tag;
+        }
+
+        public bool UpdateTag(Tag tag)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("UpdateTag", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", tag.Id);
+                cmd.Parameters.AddWithValue("@Name", tag.Name);
+                cmd.Parameters.AddWithValue("@UrlSlug", tag.UrlSlug);
+                cmd.Parameters.AddWithValue("@Description", tag.Description);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool DeleteTag(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("DeleteTag", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
         }
     }
 }

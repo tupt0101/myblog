@@ -126,8 +126,8 @@
 
                             <div class="sidebar-section src-area">
 
-                                <form action="Search" method="post">
-                                    <input class="src-input" type="text" placeholder="Search">
+                                <form method="post" asp-controller="Post" asp-action="Search">
+                                    <input class="src-input" type="text" placeholder="Search" name="searchKey">
                                     <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
                                 </form>
 
@@ -150,7 +150,7 @@
                                     dolore magnam aliquam quaerat voluptatem.
                                 </p>
 
-                                @*<div class="signature-image"><img src="images/signature-image.png" alt="Signature Image"></div>*@
+                                <div class="signature-image"><img src="~/images/signature.png" alt="Signature Image"></div>
                                 <a class="read-more-link" asp-controller="Home" asp-action="About"><b>READ MORE</b></a>
 
                             </div><!-- sidebar-section about-author -->
@@ -192,8 +192,8 @@
 
                             <div class="sidebar-section newsletter-area">
                                 <h5 class="title"><b>Subscribe to our newsletter</b></h5>
-                                <form action="post">
-                                    <input class="email-input" type="text" placeholder="Your email here">
+                                <form method="post" asp-controller="Post" asp-action="Subscribe">
+                                    <input name="email" class="email-input" type="text" placeholder="Your email here">
                                     <button class="btn btn-2" type="submit">SUBSCRIBE</button>
                                 </form>
                             </div>
@@ -207,9 +207,7 @@
             </div><!-- container -->
         </section><!-- section -->
     </div>
-
-
-
+       
     <footer>
         <div class="container">
             <div class="row">

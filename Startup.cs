@@ -33,8 +33,10 @@ namespace FinalProject_Blog
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //Allow app use custom interfaces
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ITagRepository, TagRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -64,6 +66,14 @@ namespace FinalProject_Blog
                     name: "categoryFilter", 
                     template: "Post/{action}/{categoryId?}", 
                     defaults: new { Controller = "Post", Action = "Category"});
+                routes.MapRoute(
+                    name: "search",
+                    template: "Post/{action}/{searchKey?}",
+                    defaults: new { Controller = "Post", Action = "Search" });
+                routes.MapRoute(
+                    name: "subscribe",
+                    template: "Post/{action}/{email?}",
+                    defaults: new { Controller = "Post", Action = "Subscribe" });
             });
         }
     }

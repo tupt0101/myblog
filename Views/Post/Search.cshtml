@@ -1,0 +1,42 @@
+﻿@model PostListViewModel
+@*<div>
+        <h2>@Model.CurrentCategory</h2>
+    </div>*@
+
+<div class="text-center" style="margin-bottom: 20px">
+    <a class="btn" style="width: 100%"><h5>@Model.CurrentCategory</h5></a>
+</div>
+
+@if (@Model.Posts.ToList().Count > 0)
+{
+    @foreach (var item in Model.Posts)
+    {
+        <div class="single-post">
+            <div class="image-wrapper"><img src="@item.ImgSrc" runat="server" alt="Blog Image"></div>
+
+            <div class="icons">
+                @*<div class="left-area">
+                        <a class="btn caegory-btn" href="#"><b>TRAVEL</b></a>
+                    </div>*@
+                @*<ul class="right-area social-icons">
+                        <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                        <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+                        <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
+                    </ul>*@
+            </div>
+            <h2 class="title"><a href="#"><b class="light-color">@Html.DisplayFor(modelItem => item.Title)</b></a></h2>
+            <p class="date"><em>@Html.DisplayFor(modelItem => item.PostedOn)</em></p>
+            <p>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </p>
+            <a class="btn read-more-btn" asp-controller="Post" asp-action="Detail" asp-route-postId="@item.Id"><b>READ MORE</b></a>
+        </div><!-- single-post -->
+    }
+}
+else
+{
+    <p>No record found.</p>
+}
+
+
+

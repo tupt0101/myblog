@@ -37,5 +37,14 @@ namespace FinalProject_Blog.Models
             return dbContext.GetPostByCategoryId(categoryId);
         }
 
+        public IEnumerable<Post> PostsBySearchKey(string searchKey)
+        {
+            return dbContext.SearchByKey(searchKey);
+        }
+
+        public bool SaveSubscribeEmail(string email)
+        {
+            return dbContext.SaveSubscribeEmail(email);
+        }
     }
 }

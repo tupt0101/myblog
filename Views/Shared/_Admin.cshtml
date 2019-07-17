@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Big Kiiten Blog</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <environment include="Development">
+        <!-- Font -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+        <!-- Stylesheets -->
+
+        <link href="~/common-css/bootstrap.css" rel="stylesheet">
+
+        <link href="~/common-css/ionicons.css" rel="stylesheet">
+
+        <link href="~/common-css/layerslider.css" rel="stylesheet">
+
+
+        <link href="~/01-homepage/css/styles.css" rel="stylesheet">
+
+        <link href="~/01-homepage/css/responsive.css" rel="stylesheet">
+    </environment>
+
+</head>
+<body>
+
+    <header>
+
+        @*<div class="top-menu">
+
+                <ul class="left-area welcome-area">
+                    <li class="hello-blog">Hello nice people, welcome to my blog</li>
+                    <li><a href="mailto:contact@juliblog.com">contact@juliblog.com</a></li>
+                </ul><!-- left-area -->
+
+
+                <div class="right-area">
+
+                    <div class="src-area">
+                        <form action="post">
+                            <input class="src-input" type="text" placeholder="Search">
+                            <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+                    </div><!-- src-area -->
+
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+                    </ul><!-- right-area -->
+
+                </div><!-- right-area -->
+
+            </div><!-- top-menu -->*@
+
+        <div class="middle-menu center-text">
+            <a asp-controller="Home" asp-action="Index" class="logo"><img src="~/images/cat.png" alt="Logo Image"></a>
+            <h2 style="font-family: 'Montserrat', sans-serif; margin-top: -10px"><a style="text-decoration: none" asp-controller="Home" asp-action="Index">Big Kitten</a></h2>
+            <p style="font-size: 18px; margin-top: 5px">software engineering student, blogger at &#64;BigKitten</p><br />
+        </div>
+
+        <div class="bottom-area">
+
+            <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+
+            <ul class="main-menu visible-on-click" id="main-menu">
+                <li><a asp-area="" asp-controller="Admin" asp-action="Index">HOME</a></li>
+                <li><a asp-area="" asp-controller="Admin" asp-action="Post">POST MANAGEMENT</a></li>
+                <li><a asp-area="" asp-controller="Admin" asp-action="Category">CATEGORY MANAGEMENT</a></li>
+                <li><a asp-area="" asp-controller="Admin" asp-action="Tag">TAG MANAGEMENT</a></li>
+            </ul><!-- main-menu -->
+
+        </div><!-- conatiner -->
+    </header>
+
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="container body-content" style="margin-top: 280px;">
+        <section class="section blog-area">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="blog-posts">
+                            @RenderBody()
+                        </div>
+                    </div><!-- col-lg-4 -->
+
+                </div><!-- row -->
+            </div><!-- container -->
+        </section><!-- section -->
+    </div>
+
+    @*<footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-8">
+                    <div class="footer-section">
+                        <p class="copyright">Big Kitten &copy; 2019. All rights reserved. | This template is made by Colorlib.</</p>
+                    </div><!-- footer-section -->
+                </div><!-- col-lg-4 col-md-6 -->
+
+                <div class="col-sm-4">
+                    <div class="footer-section">
+                        <ul class="social-icons">
+                            <li><a href="https://www.facebook.com/tupt0101" target="_blank"><i class="ion-social-facebook-outline"></i></a></li>
+                            <li><a href="https://twitter.com/tupt0101" target="_blank"><i class="ion-social-twitter-outline"></i></a></li>
+                            <li><a href="https://www.instagram.com/tupt0101" target="_blank"><i class="ion-social-instagram-outline"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/tupt0101" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UC3cmFIltMWS7Hfgr9-O8XXQ" target="_blank"><i class="ion-social-youtube-outline"></i></a></li>
+                        </ul>
+                    </div><!-- footer-section -->
+                </div><!-- col-lg-4 col-md-6 -->
+
+            </div><!-- row -->
+        </div><!-- container -->
+    </footer>*@
+
+
+    <!-- SCIPTS -->
+
+    <script src="common-js/jquery-3.1.1.min.js"></script>
+
+    <script src="common-js/tether.min.js"></script>
+
+    <script src="common-js/bootstrap.js"></script>
+
+    <script src="common-js/layerslider.js"></script>
+
+    <script src="common-js/scripts.js"></script>
+
+</body>
+</html>

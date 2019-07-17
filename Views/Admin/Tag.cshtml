@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FinalProject_Blog.Models.Tag>
+
+@{
+    ViewData["Title"] = "Tag";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2 class="text-center" style="margin-bottom: 20px;">Tag</h2>
+
+<p style="margin-left: 10px;">
+    <a asp-action="CreateTag">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlSlug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlSlug)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditTag", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteTag", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
