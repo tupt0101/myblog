@@ -51,14 +51,16 @@ namespace FinalProject_Blog.Controllers
             Post post = _postRepository.GetPostById(_postId);
             List<Comment> comments = _commentRepository.LoadComment(_postId).ToList();
             ViewBag.listComment = comments;
-            return View(post);
+            var tuple = new Tuple<Post, Comment>(post, new Comment());
+            return View(tuple);
         }
 
         [HttpPost]
-        public IActionResult CreateComment(Comment comment)
+        public IActionResult CreateComment([Bind] Comment comment)
         {
-
-            return RedirectToAction("Detail");
+            comment.PostedOn = DateTime.Now;
+            _commentRepository.CreateComment(comment);
+            return RedirectToAction("Detail", "Post", new { postId = comment.PostId });
         }
 
         public IActionResult Search(string searchKey)

@@ -1,10 +1,10 @@
-﻿@model Post
+﻿@model Tuple<Post, Comment>
 @{
     ViewData["Title"] = "Detail";
 }
 
     <div class="single-post">
-        <div class="image-wrapper"><img src="@Html.DisplayFor(modelItem => Model.ImgSrc)" alt="Blog Image"></div>
+        <div class="image-wrapper"><img src="@Html.DisplayFor(modelItem => Model.Item1.ImgSrc)" alt="Blog Image"></div>
 
         <div class="icons">
             <div class="left-area">
@@ -13,11 +13,11 @@
             <ul class="right-area social-icons">
                 <li><a href=""><i class="ion-android-share-alt"></i>Share</a></li>
                 <li><a href=""><i class="ion-android-favorite-outline"></i>03</a></li>
-                <li><a href=""><i class="ion-android-textsms"></i>@Model.NumOfComment</a></li>
+                <li><a href=""><i class="ion-android-textsms"></i>@Model.Item1.NumOfComment</a></li>
             </ul>
         </div>
-        <p class="date"><em>@Html.DisplayFor(modelItem => Model.PostedOn)</em></p>
-        <h3 class="title"><a href="#"><b class="light-color">@Html.DisplayFor(modelItem => Model.Title)</b></a></h3>
+        <p class="date"><em>@Html.DisplayFor(modelItem => Model.Item1.PostedOn)</em></p>
+        <h3 class="title"><a href="#"><b class="light-color">@Html.DisplayFor(modelItem => Model.Item1.Title)</b></a></h3>
         @*@Html.DisplayFor(modelItem => Model.Description)*@
 
         <div style="background-color: white; color: #383838; cursor: auto; font-family: &quot;Open Sans&quot;, sans-serif; font-size: 19px; margin-bottom: 0.875em; user-select: text !important;">
@@ -65,7 +65,7 @@
 
         @*comment area*@ 
     <div class="comments-area">
-        <h4 class="title"><b class="light-color">@Model.NumOfComment Comments</b></h4>
+        <h4 class="title"><b class="light-color">@Model.Item1.NumOfComment Comments</b></h4>
         @foreach (var cmt in @ViewBag.listComment)
         {
             <div class="comment">
@@ -90,14 +90,15 @@
                 <form method="post" asp-action="CreateComment">
                     <div class="row">
                         <div class="col-sm-6">
-                            <input class="name-input" type="text" placeholder="Name">
+                            <input asp-for="@Model.Item2.Username" class="name-input" type="text" placeholder="Name" name="Username">
                         </div>
                         <div class="col-sm-6">
-                            <input class="email-input" type="text" placeholder="Email">
+                            <input asp-for="@Model.Item2.Email" class="email-input" type="text" placeholder="Email" name="Email">
                         </div>
                         <div class="col-sm-12">
-                            <textarea class="message-input" rows="6" placeholder="Write comment here..."></textarea>
+                            <textarea asp-for="@Model.Item2.CmtContent" class="message-input" rows="6" placeholder="Write comment here..." name="CmtContent"></textarea>
                         </div>
+                        <input type="hidden" asp-for="@Model.Item2.PostId" value="@Model.Item1.Id" name="PostId" />
                         <div class="col-sm-12">
                             <button class="btn btn-2"><b>COMMENT</b></button>
                         </div>

@@ -16,6 +16,25 @@ namespace FinalProject_Blog.Database
             strConnection = "server=.;database=BlogDB;uid=sa;pwd=12345678";
         }
 
+        public String CheckLogin(string email, string password)
+        {
+            string role = "false";
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("CheckLogin", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    role = dr["Role"].ToString();
+                }
+                return role;
+            }
+        }
+
         public IEnumerable<Post> GetPost(int pageIndex, int pageSize)
         {
             SqlConnection conn = new SqlConnection(strConnection);
