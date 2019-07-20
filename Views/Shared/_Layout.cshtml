@@ -12,17 +12,13 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
         <!-- Stylesheets -->
-
         <link href="~/common-css/bootstrap.css" rel="stylesheet">
-
         <link href="~/common-css/ionicons.css" rel="stylesheet">
-
         <link href="~/common-css/layerslider.css" rel="stylesheet">
-
-
         <link href="~/01-homepage/css/styles.css" rel="stylesheet">
-
         <link href="~/01-homepage/css/responsive.css" rel="stylesheet">
+        <link href="~/02-Single-post/css/styles.css" rel="stylesheet">
+        <link href="~/02-Single-post/css/responsive.css" rel="stylesheet">
     </environment>
 
 </head>
@@ -30,34 +26,32 @@
 
     <header>
 
-        @*<div class="top-menu">
+        <div class="top-menu">
 
             <ul class="left-area welcome-area">
                 <li class="hello-blog">Hello nice people, welcome to my blog</li>
-                <li><a href="mailto:contact@juliblog.com">contact@juliblog.com</a></li>
+                <li><a href="mailto:bigkitten.info@gmail.com">bigkitten.info@gmail.com</a></li>
+                <li>
+                    <ul class="social-icons">
+                        <li><a href="https://www.facebook.com/tupt0101" target="_blank"><i class="ion-social-facebook-outline"></i></a></li>
+                        <li><a href="https://twitter.com/tupt0101" target="_blank"><i class="ion-social-twitter-outline"></i></a></li>
+                        <li><a href="https://www.instagram.com/tupt0101" target="_blank"><i class="ion-social-instagram-outline"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/tupt0101" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UC3cmFIltMWS7Hfgr9-O8XXQ" target="_blank"><i class="ion-social-youtube-outline"></i></a></li>
+                    </ul>
+                </li>
             </ul><!-- left-area -->
 
 
             <div class="right-area">
-
-                <div class="src-area">
-                    <form action="post">
-                        <input class="src-input" type="text" placeholder="Search">
-                        <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-                    </form>
-                </div><!-- src-area -->
-
-                <ul class="social-icons">
-                    <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                    <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-                    <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                    <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-                    <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-                </ul><!-- right-area -->
-
+                <ul>
+                    <li style="margin-right: 15px;">
+                        <a asp-controller="Home" asp-action="Login" style="text-decoration: none"> <i class="ion-log-in"></i> Log in</a>
+                    </li>
+                </ul>
             </div><!-- right-area -->
 
-        </div><!-- top-menu -->*@
+        </div><!-- top-menu -->
 
         <div class="middle-menu center-text">
             <a asp-controller="Home" asp-action="Index" class="logo"><img src="~/images/cat.png" alt="Logo Image"></a>
@@ -70,9 +64,9 @@
             <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
             <ul class="main-menu visible-on-click" id="main-menu">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></li>
+                <li><a asp-controller="Home" asp-action="Index">HOME</a></li>
                 @await Component.InvokeAsync("CategoryMenu")
-                <li><a asp-area="" asp-controller="Home" asp-action="About">ABOUT ME</a></li>
+                <li><a asp-controller="Home" asp-action="About">ABOUT ME</a></li>
             </ul><!-- main-menu -->
 
         </div><!-- conatiner -->
@@ -80,36 +74,36 @@
 
 
     @*<div class="main-slider">
-        <div id="slider">
+            <div id="slider">
 
-            <div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
-                <img src="images/slider-1-1600x800.jpg" class="ls-bg" alt="" />
+                <div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
+                    <img src="images/slider-1-1600x800.jpg" class="ls-bg" alt="" />
 
-                <div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
-                    <a class="btn" href="#">TRAVEL</a>
-                    <h3 class="title"><b>Travel, Love, Live</b></h3>
-                    <h6>29 October, 2017</h6>
-                </div>
+                    <div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
+                        <a class="btn" href="#">TRAVEL</a>
+                        <h3 class="title"><b>Travel, Love, Live</b></h3>
+                        <h6>29 October, 2017</h6>
+                    </div>
 
-            </div><!-- ls-slide -->
+                </div><!-- ls-slide -->
 
-            <div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
-                <img src="images/slider-2-1600x800.jpg" class="ls-bg" alt="" />
+                <div class="ls-slide" data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
+                    <img src="images/slider-2-1600x800.jpg" class="ls-bg" alt="" />
 
-                <div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
-                    <a class="btn" href="#">TRAVEL</a>
-                    <h3 class="title"><b>Travel, Love, Live</b></h3>
-                    <h6>29 October, 2017</h6>
-                </div>
+                    <div class="slider-content ls-l" style="top:60%; left:30%;" data-ls="offsetyin:100%; offsetxout:-50%; durationin:800; delayin:100; durationout:400; parallaxlevel:0;">
+                        <a class="btn" href="#">TRAVEL</a>
+                        <h3 class="title"><b>Travel, Love, Live</b></h3>
+                        <h6>29 October, 2017</h6>
+                    </div>
 
-            </div><!-- ls-slide -->
+                </div><!-- ls-slide -->
 
-        </div><!-- slider -->
-    </div>*@<!-- main-slider -->
+            </div><!-- slider -->
+        </div>*@<!-- main-slider -->
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content" style="margin-top: 320px;">
+    <div class="container body-content" style="margin-top: 50px;">
         <section class="section blog-area">
             <div class="container">
                 <div class="row">
@@ -179,15 +173,14 @@
                                     <li><a class="btn" href="#">adventure</a></li>
                                 </ul>
                             </div><!-- sidebar-section tags-area -->
-
                             <!-- sidebar-section latest-post-area -->
                             @*<div class="sidebar-section advertisement-area">
-                                <h4 class="title"><b class="light-color">Advertisement</b></h4>
-                                <a class="advertisement-img" href="#">
-                                    <img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
-                                    <h6 class="btn btn-2 discover-btn">DISCOVER</h6>
-                                </a>
-                            </div>*@
+                                    <h4 class="title"><b class="light-color">Advertisement</b></h4>
+                                    <a class="advertisement-img" href="#">
+                                        <img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
+                                        <h6 class="btn btn-2 discover-btn">DISCOVER</h6>
+                                    </a>
+                                </div>*@
                             <!-- sidebar-section advertisement-area -->
 
                             <div class="sidebar-section newsletter-area">
@@ -207,7 +200,7 @@
             </div><!-- container -->
         </section><!-- section -->
     </div>
-       
+
     <footer>
         <div class="container">
             <div class="row">

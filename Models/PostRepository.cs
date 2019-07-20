@@ -27,6 +27,16 @@ namespace FinalProject_Blog.Models
             }
         }
 
+        public bool CreatePost(Post post)
+        {
+            return dbContext.CreatePost(post);
+        }
+
+        public bool DeletePost(int Id)
+        {
+            return dbContext.DeletePost(Id);
+        }
+
         public Post GetPostById(int Id)
         {
             return dbContext.GetPostById(Id);
@@ -45,6 +55,11 @@ namespace FinalProject_Blog.Models
         public bool SaveSubscribeEmail(string email)
         {
             return dbContext.SaveSubscribeEmail(email);
+        }
+
+        public bool UpdatePost(Post post)
+        {
+            return dbContext.UpdatePost(post);
         }
     }
 }

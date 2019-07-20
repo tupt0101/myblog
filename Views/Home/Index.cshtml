@@ -13,11 +13,11 @@
             @*<div class="left-area">
                     <a class="btn caegory-btn" href="#"><b>TRAVEL</b></a>
                 </div>*@
-            @*<ul class="right-area social-icons">
-                    <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-                    <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
-                    <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
-                </ul>*@
+            <ul class="right-area social-icons">
+                <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+                <li><a href="#"><i class="ion-android-textsms"></i>@item.NumOfComment</a></li>
+            </ul>
         </div>
         <h2 class="title">
             <a asp-controller="Post" asp-action="Detail" asp-route-postId="@item.Id">

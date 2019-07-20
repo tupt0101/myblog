@@ -7,14 +7,11 @@
 <h2 class="text-center" style="margin-bottom: 20px;">Post</h2>
 
 <button>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="CreatePost">Create New</a>
 </button>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Id
-            </th>
             <th>
                 Title
             </th>
@@ -24,16 +21,13 @@
             <th>
                 Posted on
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Posts)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
@@ -44,9 +38,9 @@
                     @Html.DisplayFor(modelItem => item.PostedOn)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "EditPost", new { id = item.Id }) |
+                    <a asp-controller="Post" asp-action="Detail" asp-route-postId="@item.Id" target="_blank">View</a> |
+                    @Html.ActionLink("Delete", "DeletePost", new { id = item.Id })
                 </td>
             </tr>
         }

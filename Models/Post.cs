@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace FinalProject_Blog.Models
 {
@@ -28,6 +29,8 @@ namespace FinalProject_Blog.Models
         public virtual DateTime? Modified { get; set; }
 
         public virtual string Category { get; set; }
+
+        public virtual int NumOfComment { get; set; }
 
         //public virtual IList<Tag> Tags { get; set; }
     }

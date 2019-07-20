@@ -25,7 +25,7 @@
 	
 	header .top-menu ul.welcome-area{ padding: 0; }
 	
-	header .top-menu ul.welcome-area > li{ border: 0; }
+	header .top-menu ul.welcome-area > li{ border: none; }
 	
 	header .top-menu .hello-blog{ display: none; }
 	

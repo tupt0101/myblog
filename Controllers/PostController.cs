@@ -16,11 +16,13 @@ namespace FinalProject_Blog.Controllers
     {
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ICommentRepository _commentRepository;
 
-        public PostController(IPostRepository postRepository, ICategoryRepository categoryRepository)
+        public PostController(IPostRepository postRepository, ICategoryRepository categoryRepository, ICommentRepository commentRepository)
         {
             _postRepository = postRepository;
             _categoryRepository = categoryRepository;
+            _commentRepository = commentRepository;
         }
 
         public ViewResult Category(string categoryId)
@@ -47,7 +49,16 @@ namespace FinalProject_Blog.Controllers
         {
             int _postId = Convert.ToInt32(postId);
             Post post = _postRepository.GetPostById(_postId);
+            List<Comment> comments = _commentRepository.LoadComment(_postId).ToList();
+            ViewBag.listComment = comments;
             return View(post);
+        }
+
+        [HttpPost]
+        public IActionResult CreateComment(Comment comment)
+        {
+
+            return RedirectToAction("Detail");
         }
 
         public IActionResult Search(string searchKey)

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using FinalProject_Blog.Interfaces;
 using FinalProject_Blog.Models;
 using FinalProject_Blog.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject_Blog.Controllers
@@ -14,12 +17,14 @@ namespace FinalProject_Blog.Controllers
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ITagRepository _tagRepository;
+        private readonly IHostingEnvironment he;
 
-        public AdminController(IPostRepository postRepository, ICategoryRepository categoryRepository, ITagRepository tagRepository)
+        public AdminController(IPostRepository postRepository, ICategoryRepository categoryRepository, ITagRepository tagRepository, IHostingEnvironment environment)
         {
             _postRepository = postRepository;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
+            he = environment;
         }
 
         public IActionResult Index()
@@ -41,6 +46,56 @@ namespace FinalProject_Blog.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult CreatePost()
+        {
+            IEnumerable<Category> categories = _categoryRepository.Categories;
+            ViewBag.listCat = categories;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreatePost([Bind] Post post, IFormFile Image)
+        {
+            if (Image != null)
+            {
+                var fileName = Path.Combine(he.WebRootPath + "\\images\\", Path.GetFileName(Image.FileName));
+                Image.CopyTo(new FileStream(fileName, FileMode.Create));
+                post.ImgSrc = "../images/" + Image.FileName;
+            }
+            post.PostedOn = DateTime.Now;
+            _postRepository.CreatePost(post);
+            return RedirectToAction("Post");
+        }
+
+        [HttpGet]
+        public IActionResult EditPost(int Id)
+        {
+            Post post = _postRepository.GetPostById(Id);
+            IEnumerable<Category> categories = _categoryRepository.Categories;
+            ViewBag.listCat = categories;
+            return View(post);
+        }
+        [HttpPost]
+        public IActionResult EditPost([Bind] Post post, IFormFile Image)
+        {
+            if (Image != null)
+            {
+                var fileName = Path.Combine(he.WebRootPath + "\\images\\", Path.GetFileName(Image.FileName));
+                Image.CopyTo(new FileStream(fileName, FileMode.Create));
+                post.ImgSrc = "../images/" + Image.FileName;
+            }
+            int id = post.Id;
+            post.Modified = DateTime.Now;
+            _postRepository.UpdatePost(post);
+            return RedirectToAction("Post");
+        }
+
+        public IActionResult DeletePost(int Id)
+        {
+            _postRepository.DeletePost(Id);
+            return RedirectToAction("Post");
+        }
+
         /// <summary>
         /// All actions with Category
         /// </summary>
@@ -54,6 +109,7 @@ namespace FinalProject_Blog.Controllers
         [HttpGet]
         public IActionResult CreateCategory()
         {
+            
             return View();
         }
         [HttpPost]
@@ -70,7 +126,7 @@ namespace FinalProject_Blog.Controllers
             return View(category);
         }
         [HttpPost]
-        public IActionResult EditCategory(int id, [Bind] Category category)
+        public IActionResult EditCategory([Bind] Category category)
         {
             _categoryRepository.UpdateCategory(category);
             return RedirectToAction("Category");

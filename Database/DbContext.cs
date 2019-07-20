@@ -81,6 +81,7 @@ namespace FinalProject_Blog.Database
                     post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
                     post.Category = dr["Category"].ToString();
+                    post.NumOfComment = CountOfComment(post.Id);
                     lstPost.Add(post);
                 }
                 conn.Close();
@@ -109,13 +110,12 @@ namespace FinalProject_Blog.Database
                     post.UrlSlug = dr["UrlSlug"].ToString();
                     post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
+                    post.NumOfComment = CountOfComment(Id);
                 }
                 conn.Close();
             }
             return post;
         }
-
-        
 
         public IEnumerable<Post> GetPostByCategoryId(int categoryId)
         {
@@ -129,7 +129,7 @@ namespace FinalProject_Blog.Database
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    listPost.Add(new Post
+                    Post post = new Post
                     {
                         Id = Convert.ToInt32(dr["Id"]),
                         Title = dr["Title"].ToString(),
@@ -141,7 +141,9 @@ namespace FinalProject_Blog.Database
                         Published = dr.GetBoolean(dr.GetOrdinal("Published")),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
                         Category = dr["Category"].ToString()
-                    });
+                    };
+                    post.NumOfComment = CountOfComment(post.Id);
+                    listPost.Add(post);
                 }
                 conn.Close();
             }
@@ -178,7 +180,6 @@ namespace FinalProject_Blog.Database
             return listPost;
         }
 
-
         public IEnumerable<Post> SearchByKey(string searchKey)
         {
             List<Post> listPost = new List<Post>();
@@ -191,7 +192,7 @@ namespace FinalProject_Blog.Database
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    listPost.Add(new Post
+                    Post post = new Post
                     {
                         Id = Convert.ToInt32(dr["Id"]),
                         Title = dr["Title"].ToString(),
@@ -203,7 +204,9 @@ namespace FinalProject_Blog.Database
                         Published = dr.GetBoolean(dr.GetOrdinal("Published")),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
                         Category = dr["Category"].ToString()
-                    });
+                    };
+                    post.NumOfComment = CountOfComment(post.Id);
+                    listPost.Add(post);
                 }
                 conn.Close();
             }
@@ -221,6 +224,59 @@ namespace FinalProject_Blog.Database
                 int count = cmd.ExecuteNonQuery();
                 conn.Close();
                 return count > 0;
+            }
+        }
+
+        public bool CreatePost(Post post)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("CreatePost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Title", post.Title);
+                cmd.Parameters.AddWithValue("@ShortDescription", post.ShortDescription);
+                cmd.Parameters.AddWithValue("@Description", post.Description);
+                cmd.Parameters.AddWithValue("@ImgSrc", post.ImgSrc);
+                cmd.Parameters.AddWithValue("@Author", post.Author);
+                cmd.Parameters.AddWithValue("@UrlSlug", post.UrlSlug);
+                cmd.Parameters.AddWithValue("@Published", post.Published);
+                cmd.Parameters.AddWithValue("@PostedOn", post.PostedOn);
+                cmd.Parameters.AddWithValue("@Category", post.Category);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool UpdatePost(Post post)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("UpdatePost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", post.Id);
+                cmd.Parameters.AddWithValue("@Title", post.Title);
+                cmd.Parameters.AddWithValue("@ShortDescription", post.ShortDescription);
+                cmd.Parameters.AddWithValue("@Description", post.Description);
+                cmd.Parameters.AddWithValue("@ImgSrc", post.ImgSrc);
+                cmd.Parameters.AddWithValue("@Author", post.Author);
+                cmd.Parameters.AddWithValue("@UrlSlug", post.UrlSlug);
+                cmd.Parameters.AddWithValue("@Published", post.Published);
+                cmd.Parameters.AddWithValue("@Modified", post.Modified);
+                cmd.Parameters.AddWithValue("@Category", post.Category);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool DeletePost(int postId)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("DeletePost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", postId);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
             }
         }
 
@@ -323,35 +379,25 @@ namespace FinalProject_Blog.Database
         /// <returns></returns>
         public IEnumerable<Tag> GetAllTags()
         {
-            SqlConnection conn = new SqlConnection(strConnection);
-            SqlCommand cmd = new SqlCommand("Tag_Load", conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            List<Tag> result = new List<Tag>();
-            try
+            using (SqlConnection conn = new SqlConnection(strConnection))
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
+                SqlCommand cmd = new SqlCommand("Tag_Load", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                List<Tag> result = new List<Tag>();
+                conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    result.Add(new Tag
-                    {
-                        Id = dr.GetInt32(0),
-                        Name = dr.GetString(1),
-                        UrlSlug = dr.GetString(2),
-                        Description = dr.GetString(3)
-                    });
+                    Tag tag = new Tag();
+                    tag.Id = dr.GetInt32(0);
+                    tag.Name = dr.GetString(1);
+                    tag.UrlSlug = dr.GetString(2);
+                    tag.Description = dr.GetString(3) ?? "";
+                    result.Add(tag);
+
                 }
+                return result;
             }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return result;
         }
 
         public bool CreateTag(Tag tag)
@@ -412,6 +458,71 @@ namespace FinalProject_Blog.Database
                 SqlCommand cmd = new SqlCommand("DeleteTag", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        /// <summary>
+        /// All actions with comment
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns></returns>
+        public IEnumerable<Comment> LoadComment(int postId)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("Comment_Load", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@PostId", postId);
+                List<Comment> list = new List<Comment>();
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    list.Add(new Comment {
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Username = dr["Username"].ToString(),
+                        Email = dr["Email"].ToString(),
+                        PostedOn = Convert.ToDateTime(dr["PostedOn"]),
+                        CmtContent = dr["CmtContent"].ToString(),
+                        PostId = postId
+                    });
+
+                }
+                return list;
+            }
+        }
+
+        public int CountOfComment(int postId)
+        {
+            int count = 0;
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("Comment_Count", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@PostId", postId);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    count = Convert.ToInt32(dr["NumOfCmt"]);
+                }
+                return count;
+            }
+        }
+
+        public bool CreateComment(Comment cmt)
+        {
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("CreateComment", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Username", cmt.Username);
+                cmd.Parameters.AddWithValue("@Email", cmt.Email);
+                cmd.Parameters.AddWithValue("@PostedOn", cmt.PostedOn);
+                cmd.Parameters.AddWithValue("@CmtContent", cmt.CmtContent);
+                cmd.Parameters.AddWithValue("@PostId", cmt.PostId);
                 conn.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }

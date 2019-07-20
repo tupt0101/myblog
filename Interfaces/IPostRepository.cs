@@ -19,5 +19,11 @@ namespace FinalProject_Blog.Interfaces
         IEnumerable<Post> PostsBySearchKey(string searchKey);
 
         bool SaveSubscribeEmail(string email);
+
+        bool CreatePost(Post post);
+
+        bool UpdatePost(Post post);
+
+        bool DeletePost(int Id);
     }
 }
