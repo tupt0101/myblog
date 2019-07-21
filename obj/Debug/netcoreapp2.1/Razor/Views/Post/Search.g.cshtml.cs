@@ -108,7 +108,7 @@ WriteAttributeValue("", 406, item.ImgSrc, 406, 12, false);
             WriteLiteral("                    <div class=\"left-area\" style=\"margin-right: 5px\">\r\n                        ");
             EndContext();
             BeginContext(658, 112, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "451a81dd5e8b433894736a5062cca559", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "38e22983484941208b0aac23d85a485e", async() => {
                 BeginContext(750, 3, true);
                 WriteLiteral("<b>");
                 EndContext();
@@ -207,7 +207,7 @@ WriteAttributeValue("", 406, item.ImgSrc, 406, 12, false);
             WriteLiteral("\r\n            </p>\r\n            ");
             EndContext();
             BeginContext(1523, 119, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "df3aaf82e2194add81180eeb51ad2819", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ee7978113a364320a394acfbdb651265", async() => {
                 BeginContext(1622, 16, true);
                 WriteLiteral("<b>READ MORE</b>");
                 EndContext();

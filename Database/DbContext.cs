@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FinalProject_Blog.Database
@@ -23,15 +25,23 @@ namespace FinalProject_Blog.Database
             return Startup.ConnectionString;
         }
 
+        public static string EncodePasswordToBase64(string password)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(password);
+            byte[] inArray = HashAlgorithm.Create("SHA1").ComputeHash(bytes);
+            return Convert.ToBase64String(inArray);
+        }
+
         public User CheckLogin(string email, string password)
         {
             User u = new User();
+            string encryptPwd = EncodePasswordToBase64(password);
             using (SqlConnection conn = new SqlConnection(strConnection))
             {
                 SqlCommand cmd = new SqlCommand("CheckLogin", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@Password", password);
+                cmd.Parameters.AddWithValue("@Password", encryptPwd);
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())

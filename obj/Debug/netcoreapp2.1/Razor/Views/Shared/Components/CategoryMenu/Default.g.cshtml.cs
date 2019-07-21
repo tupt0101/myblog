@@ -66,7 +66,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("    <li>");
             EndContext();
             BeginContext(45, 101, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6673bd209de4f8f9afeeba8099ebc1a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb39364f18e24838aa73fe7060796a37", async() => {
                 BeginContext(129, 13, false);
 #line 3 "D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\Views\Shared\Components\CategoryMenu\Default.cshtml"
                                                                                       Write(category.Name);

@@ -31,18 +31,22 @@ namespace FinalProject_Blog.Controllers
             if (!ModelState.IsValid)
                 return View(vm);
             User u = _userManager.CheckLogin(vm.Email, vm.Password);
-            if (u.Role.Equals("Admin"))
+            if (u.Role != null)
             {
-                UserSession userSession = new UserSession();
-                userSession.Email = u.Email;
-                userSession.Role = u.Role;
-                HttpContext.Session.SetString("USER_SESSION", u.Role);
-                return RedirectToAction("Index", "Admin");
+                if (u.Role.Equals("Admin"))
+                {
+                    UserSession userSession = new UserSession();
+                    userSession.Email = u.Email;
+                    userSession.Role = u.Role;
+                    HttpContext.Session.SetString("USER_SESSION", u.Role);
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult Logout()

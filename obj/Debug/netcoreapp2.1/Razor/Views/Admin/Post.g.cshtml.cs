@@ -69,7 +69,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("\r\n<h2 class=\"text-center\" style=\"margin-bottom: 20px;\">Post</h2>\r\n\r\n<button>\r\n    ");
             EndContext();
             BeginContext(194, 41, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b8463736ec74d37974e620e378e8192", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8b2b08c0c4a64594bd360164c394c444", async() => {
                 BeginContext(221, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -158,7 +158,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral(" |\r\n                    ");
             EndContext();
             BeginContext(1079, 97, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08a516d2b6444122a2f7be241bbf73dd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "32e95493d8014ccf806b8aedc4df6cd2", async() => {
                 BeginContext(1168, 4, true);
                 WriteLiteral("View");
                 EndContext();

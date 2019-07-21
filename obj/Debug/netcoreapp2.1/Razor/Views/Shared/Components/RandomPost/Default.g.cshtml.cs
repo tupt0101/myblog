@@ -66,7 +66,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("    <div class=\"latest-post\" href=\"#\">\r\n        <div class=\"post-info\" style=\"width: 100%; margin-left: 0px\">\r\n            <h5>");
             EndContext();
             BeginContext(160, 115, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "525f60e4fe2e40ce839a31f30ece9c2d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "870a4f596d5842b992357d76ac25890e", async() => {
                 BeginContext(233, 23, true);
                 WriteLiteral("<b class=\"light-color\">");
                 EndContext();

@@ -153,12 +153,16 @@
                                 </ul><!-- right-area -->
 
                                 <h4 class="author-name"><b class="light-color">Phan Thành Tú</b></h4>
-                                <p>
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                    dolore magnam aliquam quaerat voluptatem.
+                                <p></p>
+                                <p style="font-style: italic">
+                                    “Always code as if the guy<br />
+                                    who ends up maintaining your code<br />
+                                    will be a violent psychopath<br />
+                                    who knows where you live.” <br />
+                                    - John Woods -
                                 </p>
 
-                                <div class="signature-image"><img src="~/images/signature.png" alt="Signature Image"></div>
+                                @*<div class="signature-image"><img src="~/images/signature.png" alt="Signature Image"></div>*@
                                 <a class="read-more-link" asp-controller="Home" asp-action="About"><b>READ MORE</b></a>
 
                             </div><!-- sidebar-section about-author -->
@@ -192,9 +196,9 @@
                             <!-- sidebar-section advertisement-area -->
 
                             <div class="sidebar-section newsletter-area">
-                                <h5 class="title"><b>Subscribe to our newsletter</b></h5>
+                                <h5 class="title">Subscribe để nhận những bài viết mới nhất qua Email nhé.</h5>
                                 <form method="post" asp-controller="Post" asp-action="Subscribe">
-                                    <input name="email" class="email-input" type="text" placeholder="Your email here">
+                                    <input name="email" class="email-input" type="text" placeholder="Nhập email...">
                                     <button class="btn btn-2" type="submit">SUBSCRIBE</button>
                                 </form>
                             </div>

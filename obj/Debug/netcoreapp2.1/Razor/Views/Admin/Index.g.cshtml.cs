@@ -70,7 +70,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("\r\n<h2 class=\"text-center\">Welcome, Admin!</h2>\r\n<div class=\"text-center\" style=\"margin-top: 20px; font-size: 18px\">\r\n    ");
             EndContext();
             BeginContext(210, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a36a76e730184760ad53d151ececb432", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b591bcb2d0ab48ac99807b2133e689d6", async() => {
                 BeginContext(258, 7, true);
                 WriteLiteral("Log out");
                 EndContext();
