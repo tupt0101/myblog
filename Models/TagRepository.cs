@@ -24,6 +24,17 @@ namespace FinalProject_Blog.Models
             return dbContext.CreateTag(tag);
         }
 
+        public string CurrentTag(int tagId)
+        {
+            List<Tag> tags = dbContext.GetAllTags().ToList();
+            foreach (Tag tag in tags)
+            {
+                if (tag.Id == tagId)
+                    return tag.Name;
+            }
+            return string.Empty;
+        }
+
         public bool DeleteTag(int Id)
         {
             return dbContext.DeleteTag(Id);
@@ -32,6 +43,11 @@ namespace FinalProject_Blog.Models
         public Tag GetTagById(int Id)
         {
             return dbContext.GetTagById(Id);
+        }
+
+        public IEnumerable<Post> LoadPostToTag(int tagId)
+        {
+            return dbContext.LoadPostToTag(tagId);
         }
 
         public bool UpdateTag(Tag tag)

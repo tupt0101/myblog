@@ -49,3 +49,5 @@ D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debu
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\CreatePost.g.cshtml.cs
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Account\Login.g.cshtml.cs
 D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Admin\EditPost.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Post\Tag.g.cshtml.cs
+D:\FPT\Semester 5\PRN292\Repository\FinalProject-Blog\FinalProject-Blog\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Components\TagMenu\Default.g.cshtml.cs

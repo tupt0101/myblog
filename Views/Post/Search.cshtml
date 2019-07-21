@@ -15,14 +15,17 @@
             <div class="image-wrapper"><img src="@item.ImgSrc" runat="server" alt="Blog Image"></div>
 
             <div class="icons">
-                @*<div class="left-area">
-                        <a class="btn caegory-btn" href="#"><b>TRAVEL</b></a>
-                    </div>*@
+                @foreach (var tag in item.Tags)
+                {
+                    <div class="left-area" style="margin-right: 5px">
+                        <a class="btn caegory-btn" asp-action="Tag" asp-controller="Post" asp-route-tagId="@tag.Id"><b>@tag.Name</b></a>
+                    </div>
+                }
                 <ul class="right-area social-icons">
-                        <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-                        <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
-                        <li><a href="#"><i class="ion-android-textsms"></i>@item.NumOfComment</a></li>
-                    </ul>
+                    <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                    <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+                    <li><a href="#"><i class="ion-android-textsms"></i>@item.NumOfComment</a></li>
+                </ul>
             </div>
             <h2 class="title"><a href="#"><b class="light-color">@Html.DisplayFor(modelItem => item.Title)</b></a></h2>
             <p class="date"><em>@Html.DisplayFor(modelItem => item.PostedOn)</em></p>

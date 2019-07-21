@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FinalProject_Blog.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;

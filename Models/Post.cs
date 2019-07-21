@@ -32,6 +32,6 @@ namespace FinalProject_Blog.Models
 
         public virtual int NumOfComment { get; set; }
 
-        //public virtual IList<Tag> Tags { get; set; }
+        public virtual List<Tag> Tags { get; set; }
     }
 }

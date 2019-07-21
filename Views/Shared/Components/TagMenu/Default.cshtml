@@ -1,0 +1,5 @@
+﻿@foreach (var tag in Model)
+{
+    <li><a class="btn" asp-controller="Post" asp-action="Tag" asp-route-tagId="@tag.Id">@tag.Name</a></li>
+}
+

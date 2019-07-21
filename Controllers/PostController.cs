@@ -16,12 +16,14 @@ namespace FinalProject_Blog.Controllers
     {
         private readonly IPostRepository _postRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly ITagRepository _tagRepository;
         private readonly ICommentRepository _commentRepository;
 
-        public PostController(IPostRepository postRepository, ICategoryRepository categoryRepository, ICommentRepository commentRepository)
+        public PostController(IPostRepository postRepository, ICategoryRepository categoryRepository, ITagRepository tagRepository, ICommentRepository commentRepository)
         {
             _postRepository = postRepository;
             _categoryRepository = categoryRepository;
+            _tagRepository = tagRepository;
             _commentRepository = commentRepository;
         }
 
@@ -41,6 +43,18 @@ namespace FinalProject_Blog.Controllers
             {
                 Posts = posts,
                 CurrentCategory = _categoryRepository.CurrentCategory(_categoryId)
+            };
+            return View(postListViewModel);
+        }
+
+        public IActionResult Tag(string tagId)
+        {
+            int _tagId = Convert.ToInt32(tagId);
+            IEnumerable<Post> posts = _tagRepository.LoadPostToTag(_tagId);
+            var postListViewModel = new PostListViewModel
+            {
+                Posts = posts,
+                CurrentCategory = _tagRepository.CurrentTag(_tagId),
             };
             return View(postListViewModel);
         }

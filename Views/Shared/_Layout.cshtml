@@ -1,4 +1,8 @@
-﻿<!DOCTYPE HTML>
+﻿@using Microsoft.AspNetCore.Http;
+@{ 
+    var role = Context.Session.GetString("USER_SESSION");
+}
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <title>Big Kiiten Blog</title>
@@ -45,9 +49,19 @@
 
             <div class="right-area">
                 <ul>
-                    <li style="margin-right: 15px;">
-                        <a asp-controller="Account" asp-action="Login" style="text-decoration: none"> <i class="ion-log-in"></i> Log in</a>
-                    </li>
+                    @if (role == null)
+                    {
+                        <li style="margin-right: 15px;">
+                            <a asp-controller="Account" asp-action="Login" style="text-decoration: none"> <i class="ion-log-in"></i> Log in</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="margin-right: 15px;">
+                            <a asp-controller="Admin" asp-action="Index" style="text-decoration: none"> <i class="ion-android-settings"></i> Go to Dashboard</a>
+                        </li>
+                    }
+
                 </ul>
             </div><!-- right-area -->
 
@@ -164,13 +178,7 @@
                             <div class="sidebar-section tags-area">
                                 <h4 class="title"><b class="light-color">Tags</b></h4>
                                 <ul class="tags">
-                                    <li><a class="btn" href="#">design</a></li>
-                                    <li><a class="btn" href="#">fasinon</a></li>
-                                    <li><a class="btn" href="#">travel</a></li>
-                                    <li><a class="btn" href="#">music</a></li>
-                                    <li><a class="btn" href="#">video</a></li>
-                                    <li><a class="btn" href="#">photography</a></li>
-                                    <li><a class="btn" href="#">adventure</a></li>
+                                    @await Component.InvokeAsync("TagMenu")
                                 </ul>
                             </div><!-- sidebar-section tags-area -->
                             <!-- sidebar-section latest-post-area -->

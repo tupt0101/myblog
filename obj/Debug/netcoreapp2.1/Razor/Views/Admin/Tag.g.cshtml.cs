@@ -69,7 +69,7 @@ using FinalProject_Blog.ViewModels;
             WriteLiteral("\r\n<h2 class=\"text-center\" style=\"margin-bottom: 20px;\">Tag</h2>\r\n\r\n<p style=\"margin-left: 10px;\">\r\n    ");
             EndContext();
             BeginContext(240, 40, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e5866c263e534c9fb3917a4ca4c519be", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c94bd57c30904ad28637c73aa7aa28de", async() => {
                 BeginContext(266, 10, true);
                 WriteLiteral("Create New");
                 EndContext();

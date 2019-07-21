@@ -1,4 +1,5 @@
 ﻿using FinalProject_Blog.Models;
+using FinalProject_Blog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,14 +12,20 @@ namespace FinalProject_Blog.Database
     public class DbContext
     {
         string strConnection;
+
         public DbContext()
         {
-            strConnection = "server=.;database=BlogDB;uid=sa;pwd=12345678";
+            strConnection = GetConnectionString();
         }
 
-        public String CheckLogin(string email, string password)
+        public static string GetConnectionString()
         {
-            string role = "false";
+            return Startup.ConnectionString;
+        }
+
+        public User CheckLogin(string email, string password)
+        {
+            User u = new User();
             using (SqlConnection conn = new SqlConnection(strConnection))
             {
                 SqlCommand cmd = new SqlCommand("CheckLogin", conn);
@@ -29,10 +36,12 @@ namespace FinalProject_Blog.Database
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    role = dr["Role"].ToString();
+                    u.Email = email;
+                    u.Password = password;
+                    u.Role = dr["Role"].ToString();
                 }
-                return role;
             }
+            return u;
         }
 
         public IEnumerable<Post> GetPost(int pageIndex, int pageSize)
@@ -78,6 +87,30 @@ namespace FinalProject_Blog.Database
             return result;
         }
 
+        public List<Tag> LoadTagToPost(int postId)
+        {
+            List<Tag> tags = new List<Tag>();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("LoadTagToPost", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@postId", postId);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    tags.Add(new Tag
+                    {
+                        Id = Convert.ToInt32(dr["Tag_Id"]),
+                        Name = dr["Name"].ToString(),
+                        UrlSlug = dr["UrlSlug"].ToString(),
+                        Description = dr["Description"].ToString()
+                    });
+                }
+            }
+            return tags;
+        }
+
         public IEnumerable<Post> GetAllPosts()
         {
             List<Post> lstPost = new List<Post>();
@@ -101,11 +134,44 @@ namespace FinalProject_Blog.Database
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
                     post.Category = dr["Category"].ToString();
                     post.NumOfComment = CountOfComment(post.Id);
+                    post.Tags = LoadTagToPost(post.Id);
                     lstPost.Add(post);
                 }
                 conn.Close();
             }
             return lstPost;
+        }
+
+        public List<Post> LoadPostToTag(int tagId)
+        {
+            List<Post> posts = new List<Post>();
+            using (SqlConnection conn = new SqlConnection(strConnection))
+            {
+                SqlCommand cmd = new SqlCommand("LoadPostToTag", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@tagId", tagId);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Post post = new Post();
+                    post.Id = Convert.ToInt32(dr["Post_Id"]);
+                    post.Title = dr["Title"].ToString();
+                    post.ShortDescription = dr["ShortDescription"].ToString();
+                    post.Description = dr["Description"].ToString();
+                    post.ImgSrc = dr["ImgSrc"].ToString();
+                    post.Author = dr["Author"].ToString();
+                    post.UrlSlug = dr["UrlSlug"].ToString();
+                    post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
+                    post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
+                    post.Category = dr["Category"].ToString();
+                    post.NumOfComment = CountOfComment(post.Id);
+                    post.Tags = LoadTagToPost(post.Id);
+                    posts.Add(post);
+                }
+                conn.Close();
+            }
+            return posts;
         }
 
         public Post GetPostById(int Id)
@@ -130,6 +196,7 @@ namespace FinalProject_Blog.Database
                     post.Published = dr.GetBoolean(dr.GetOrdinal("Published"));
                     post.PostedOn = Convert.ToDateTime(dr["PostedOn"]);
                     post.NumOfComment = CountOfComment(Id);
+                    post.Tags = LoadTagToPost(post.Id);
                 }
                 conn.Close();
             }
@@ -160,8 +227,9 @@ namespace FinalProject_Blog.Database
                         Published = dr.GetBoolean(dr.GetOrdinal("Published")),
                         PostedOn = Convert.ToDateTime(dr["PostedOn"]),
                         Category = dr["Category"].ToString()
-                    };
+                };
                     post.NumOfComment = CountOfComment(post.Id);
+                    post.Tags = LoadTagToPost(post.Id);
                     listPost.Add(post);
                 }
                 conn.Close();
@@ -225,6 +293,7 @@ namespace FinalProject_Blog.Database
                         Category = dr["Category"].ToString()
                     };
                     post.NumOfComment = CountOfComment(post.Id);
+                    post.Tags = LoadTagToPost(post.Id);
                     listPost.Add(post);
                 }
                 conn.Close();

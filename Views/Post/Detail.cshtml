@@ -7,9 +7,12 @@
         <div class="image-wrapper"><img src="@Html.DisplayFor(modelItem => Model.Item1.ImgSrc)" alt="Blog Image"></div>
 
         <div class="icons">
-            <div class="left-area">
-                <a class="btn caegory-btn" href="#"><b>TRAVELLLL</b></a>
-            </div>
+            @foreach (var tag in Model.Item1.Tags)
+            {
+                <div class="left-area" style="margin-right: 5px">
+                    <a class="btn caegory-btn" asp-action="Tag" asp-controller="Post" asp-route-tagId="@tag.Id"><b>@tag.Name</b></a>
+                </div>
+            }
             <ul class="right-area social-icons">
                 <li><a href=""><i class="ion-android-share-alt"></i>Share</a></li>
                 <li><a href=""><i class="ion-android-favorite-outline"></i>03</a></li>

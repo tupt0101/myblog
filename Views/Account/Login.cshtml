@@ -11,12 +11,12 @@
     <div class="row">
         <div class="col-lg-6">
             <label asp-for="Email"></label>
-            <input asp-action="Email" class="form-control" />
+            <input type="text" asp-action="Email" class="form-control" name="Email" />
             <span asp-validation-for="Email"></span>
         </div>
         <div class="col-lg-6">
             <label asp-for="Password"></label>
-            <input asp-action="Passowrd" class="form-control" />
+            <input type="password" asp-action="Passowrd" class="form-control" name="Password" />
             <span asp-validation-for="Password"></span>
         </div>
         <div class="col-lg-12">

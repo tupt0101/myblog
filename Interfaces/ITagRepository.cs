@@ -17,5 +17,9 @@ namespace FinalProject_Blog.Interfaces
         bool UpdateTag(Tag tag);
 
         bool DeleteTag(int Id);
+
+        IEnumerable<Post> LoadPostToTag(int tagId);
+
+        string CurrentTag(int tagId);
     }
 }
