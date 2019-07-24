@@ -35,6 +35,10 @@ namespace FinalProject_Blog.Database
         public User CheckLogin(string email, string password)
         {
             User u = new User();
+            if (string.IsNullOrEmpty(password))
+            {
+                return u;
+            }
             string encryptPwd = EncodePasswordToBase64(password);
             using (SqlConnection conn = new SqlConnection(strConnection))
             {
